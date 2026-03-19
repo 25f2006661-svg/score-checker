@@ -19,7 +19,6 @@ const scores = [
         score: 84
     }
 ];
-
 // ✅ API
 app.get("/api/scores", (req, res) => {
     res.json(scores);
