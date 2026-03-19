@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Score Checker</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-color: #f4f6f8;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: #2f3e4e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navbar img {
+            width: 55px;
+            height: 55px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .navbar-right a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .navbar-right a:hover {
+            text-decoration: underline;
+        }
+
+        /* CONTENT */
+        .container {
+            width: 70%;
+            margin: 40px auto;
+        }
+
+        .info-box {
+            background-color: #d9edf7;
+            padding: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #3b3f45;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            background-color: #e9ecef;
+            padding: 12px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f8f9fa;
+        }
+
+        button {
+            background-color: #17a2b8;
+            border: none;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="navbar-left">
+        <img src="logo.png">
+        <div>
+            <div class="title">INDIAN INSTITUTE OF TECHNOLOGY MADRAS</div>
+            <div class="subtitle">Score Checker</div>
+        </div>
+    </div>
+
+    <div class="navbar-right">
+        <a onclick="goHome()">🏠 Home</a>
+        <a onclick="logout()">🚪 Logout</a>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="info-box">
+        This is before the sign-off of scores; it may change after the sign-off.
+    </div>
+
+    <div class="info-box">
+        For the respective question paper, you can check the SEEK portal.
+    </div>
+
+    <!-- TABLE -->
+    <table id="scoreTable"></table>
+
+</div>
+
+<script>
+// 🔐 LOGIN CHECK
+let email = localStorage.getItem("email");
+
+if (!email) {
+    window.location.href = "/login.html";
+}
+
+// 📊 LOAD DATA
+async function loadScores() {
+    let res = await fetch("/api/scores");
+    let data = await res.json();
+
+    let table = `
+    <tr>
+        <th>EMAIL</th>
+        <th>HALLTICKET</th>
+        <th>COURSE CODE</th>
+        <th>TOTAL SCORE</th>
+        <th>VIEW</th>
+    </tr>
+    `;
+
+    let userEmail = localStorage.getItem("email");
+
+    data.forEach(d => {
+        if (d.email === userEmail) {
+            table += `
+            <tr>
+                <td>${d.email}</td>
+                <td>${d.hallticket}</td>
+                <td>${d.course}</td>
+                <td>${d.score}</td>
+                <td>
+                    <button onclick="openDetails('${d.course}')">👁️</button>
+                </td>
+            </tr>
+            `;
+        }
+    });
+
+    document.getElementById("scoreTable").innerHTML = table;
+}
+
+// 👁️ OPEN DETAILS PAGE
+function openDetails(course) {
+    window.location.href = "/details.html?course=" + course;
+}
+
+// 🚪 LOGOUT
+function logout() {
+    localStorage.removeItem("email");
+    window.location.href = "/login.html";
+}
+
+// 🏠 HOME
+function goHome() {
+    window.location.href = "/";
+}
+
+loadScores();
+</script>
+
+</body>
+</html>

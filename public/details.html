@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Score Details</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f2f2f2;
+        }
+
+        .navbar {
+            background: #34495e;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .navbar-right a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #3d444b;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="navbar-left">
+        <img src="logo.png">
+        <h2>SCORE CHECKER</h2>
+    </div>
+
+    <div class="navbar-right">
+        <a href="index.html">🏠 Home</a>
+        <a href="login.html">🚪 Logout</a>
+    </div>
+</div>
+
+<!-- TABLE AREA -->
+<div class="container">
+    <table id="tableArea"></table>
+</div>
+
+<script>
+    // Get course from URL
+    let params = new URLSearchParams(window.location.search);
+    let course = params.get("course");
+
+    let table = document.getElementById("tableArea");
+
+    // ================= CS1002 =================
+    if (course === "CS1002") {
+        table.innerHTML = `
+<tr>
+<th>S.NO.</th><th>Question ID</th><th>Question Type</th><th>Result</th><th>Score</th>
+<th>Selected Option</th><th>Correct Option</th><th>Mark</th><th>Modification of Question</th><th>Remarks</th>
+</tr>
+
+<tr><td>1</td><td>6406531951223</td><td>MCQ</td><td>C</td><td>0</td><td>6406536344072</td><td>6406536344072</td><td>0</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>2</td><td>6406531951224</td><td>MCQ</td><td>C</td><td>0</td><td>6406536344074</td><td>6406536344074</td><td>0</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>3</td><td>6406531951225</td><td>SA</td><td>C</td><td>5.00</td><td>20</td><td>20</td><td>5.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>4</td><td>6406531951236</td><td>MSQ</td><td>C</td><td>4.00</td><td>6406536344105</td><td>6406536344105</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>5</td><td>6406531951230</td><td>MSQ</td><td>C</td><td>4.00</td><td>6406536344089,6406536344090</td><td>6406536344089,6406536344090</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>6</td><td>6406531951226</td><td>MSQ</td><td>C</td><td>4.00</td><td>6406536344079</td><td>6406536344079</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>7</td><td>6406531951235</td><td>MSQ</td><td>C</td><td>4.00</td><td>6406536344102,6406536344103</td><td>6406536344102,6406536344103</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>8</td><td>6406531951227</td><td>SA</td><td>C</td><td>3.00</td><td>4</td><td>4</td><td>3.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>9</td><td>6406531951228</td><td>MCQ</td><td>W</td><td>0</td><td>6406536344084</td><td>6406536344082</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>10</td><td>6406531951231</td><td>SA</td><td>C</td><td>4.00</td><td>13</td><td>13</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>11</td><td>6406531951229</td><td>SA</td><td>C</td><td>4.00</td><td>7</td><td>7</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>12</td><td>6406531951232</td><td>SA</td><td>C</td><td>4.00</td><td>-1</td><td>-1</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>13</td><td>6406531951234</td><td>MSQ</td><td>C</td><td>5.00</td><td>6406536344097,6406536344098</td><td>6406536344097,6406536344098</td><td>5.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>14</td><td>6406531951233</td><td>MSQ</td><td>C</td><td>5.00</td><td>6406536344093,6406536344096</td><td>6406536344093,6406536344096</td><td>5.00</td><td>Not Modified</td><td>-</td></tr>
+        `;
+    }
+
+    // ================= MA1001 =================
+    else if (course === "MA1001") {
+        table.innerHTML = `
+<tr>
+<th>S.NO.</th><th>Question ID</th><th>Question Type</th><th>Result</th><th>Score</th>
+<th>Selected Option</th><th>Correct Option</th><th>Mark</th><th>Modification of Question</th><th>Remarks</th>
+</tr>
+<tr><td>1</td><td>6406531951119</td><td>MCQ</td><td>C</td><td>0</td><td>6406536343721</td><td>6406536343721</td><td>0</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>2</td><td>6406531951123</td><td>MCQ</td><td>C</td><td>3.00</td><td>6406536343738</td><td>6406536343738</td><td>3.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>3</td><td>6406531951121</td><td>MCQ</td><td>C</td><td>3.00</td><td>6406536343728</td><td>6406536343728</td><td>3.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>4</td><td>6406531951120</td><td>MCQ</td><td>C</td><td>3.00</td><td>6406536343724</td><td>6406536343724</td><td>3.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>5</td><td>6406531951122</td><td>MCQ</td><td>C</td><td>4.00</td><td>6406536343732</td><td>6406536343732</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>6</td><td>6406531951125</td><td>MSQ</td><td>C</td><td>4.00</td><td>6406536343743</td><td>6406536343743,6406536343746,6406536343747</td><td>4.00</td><td>Not Modified</td><td>Award marks to all</td></tr>
+<tr><td>7</td><td>6406531951124</td><td>MSQ</td><td>C</td><td>4.00</td><td>6406536343739,6406536343740,6406536343742</td><td>6406536343739,6406536343740,6406536343742</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>8</td><td>6406531951128</td><td>SA</td><td>C</td><td>4.00</td><td>10</td><td>10</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>9</td><td>6406531951126</td><td>SA</td><td>W</td><td>0</td><td>10</td><td>21</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>10</td><td>6406531951129</td><td>SA</td><td>W</td><td>0</td><td>7</td><td>14</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>11</td><td>6406531951127</td><td>SA</td><td>C</td><td>3.00</td><td>30</td><td>30</td><td>3.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>12</td><td>6406531951131</td><td>MCQ</td><td>C</td><td>4.00</td><td>6406536343753</td><td>6406536343753</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>13</td><td>6406531951132</td><td>MCQ</td><td>C</td><td>3.00</td><td>6406536343756</td><td>6406536343756</td><td>3.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>14</td><td>6406531951134</td><td>MCQ</td><td>C</td><td>4.00</td><td>6406536343761</td><td>6406536343761</td><td>4.00</td><td>Not Modified</td><td>-</td></tr>
+<tr><td>15</td><td>6406531951135</td><td>MSQ</td><td>C</td><td>3.00</td><td>6406536343766,6406536343767</td><td>6406536343764,6406536343767</td><td>3.00</td><td>Not Modified</td><td>-</td></tr>
+        `;
+    }
+</script>
+
+</body>
+</html>
